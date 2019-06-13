@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Hangman</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        .header img {
+            width: 100%;
+            height: auto;
+            margin: 0;
+        }
+
+        .body {
+            background-color: darkgray;
+            width: 100%;
+            height: 100%;
+        }
+
+        .container {
+            border-style: dotted;
+            border-color: black;
+            text-align: center;
+        }
+
+        .row {
+            background-color: lightblue;
+            margin: .5%;
+        }
+
+        .column {
+            border-style: dotted;
+            border-color: green;
+        }
+    </style>
+</head>
+
+<header class="header">
+    <img src="assets\images\Metalhead Background.jpg">
+</header>
+
+<body class="body">
+    <div class="container">
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="col-md-8 column" id="">
+                Picture of band previously guessed
+            </div>
+            <div class="col-md-4 column">
+                <div class="row">Display _ _ _ word</div>
+                <div class="row">Amount of Tries: #</div>
+                <div class="row">Letters already guessed</div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        //Store user guess
+        //test guess to see if its already been guessed
+        //if it has not been guessed already test it accross the randomly generated band name character by character
+            //if the guessed letter matches any character (multiple) correctGuesses++
+                //push userGuess into alreadyGuessed by the end up the loop
+                //when correctGuesses = bandName display "you win" band picture and song
+    //--------------------------------------------------------------------------------------------------------
+        var letterGuessed = "g";
+        var alreadyGuessed = ["a", "h"];
+        var allBandNames = ["metallica", "nonpoint", "sevendust"];
+        var bandName = allBandNames[Math.floor(Math.random()*allBandNames.length)];
+        var correctGuesses = 0;
+        console.log(letterGuessed);
+        console.log(alreadyGuessed[0]);
+        console.log(allBandNames[2]);
+        console.log(bandName);
+        console.log(correctGuesses);
+        // for (let index1 = 0; correctGuesses !== bandName.length; index1++){
+        //     if (letterGuessed !== alreadyGuessed[index1]{
+        //         for(let index2 = 0; correctGuesses < bandName.length; index2++){
+        //             if (){}
+        //         }
+        //      }
+        // }
+    </script>
+</body>
+
+</html>
