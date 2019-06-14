@@ -61,27 +61,59 @@
         //Store user guess
         //test guess to see if its already been guessed
         //if it has not been guessed already test it accross the randomly generated band name character by character
-            //if the guessed letter matches any character (multiple) correctGuesses++
-                //push userGuess into alreadyGuessed by the end up the loop
-                //when correctGuesses = bandName display "you win" band picture and song
-    //--------------------------------------------------------------------------------------------------------
-        var letterGuessed = "g";
-        var alreadyGuessed = ["a", "h"];
-        var allBandNames = ["metallica", "nonpoint", "sevendust"];
-        var bandName = allBandNames[Math.floor(Math.random()*allBandNames.length)];
+        //if the guessed letter matches any character (multiple) correctGuesses++
+        //push userGuess into alreadyGuessed by the end up the loop
+        //when correctGuesses = bandName display "you win" band picture and song
+        //--------------------------------------------------------------------------------------------------------
+        const allBandNames = ["metallica", "nonpoint", "sevendust"];
+        var bandName = allBandNames[Math.floor(Math.random() * allBandNames.length)];
+        var alreadyGuessed = [];
         var correctGuesses = 0;
-        console.log(letterGuessed);
-        console.log(alreadyGuessed[0]);
-        console.log(allBandNames[2]);
-        console.log(bandName);
-        console.log(correctGuesses);
-        // for (let index1 = 0; correctGuesses !== bandName.length; index1++){
-        //     if (letterGuessed !== alreadyGuessed[index1]{
-        //         for(let index2 = 0; correctGuesses < bandName.length; index2++){
-        //             if (){}
-        //         }
-        //      }
+        // alreadyGuessed.push(event);
+
+        document.onkeyup = function (event) {
+            let letterGuessed = event.key;
+            var correctGuesses = 0;
+
+            if (letterGuessed !== alreadyGuessed.includes(letterGuessed)) {
+                alreadyGuessed.push(letterGuessed);
+                alreadyGuessed.forEach(function (element) {
+                    console.log(element);
+                });
+            }
+            else {
+                console.log(letterGuessed + " has already been guessed");
+            }
+        }
+
+
+
+        // document.onkeyup = function (event) {
+        //     var letterGuessed = event.key;
+        //     // var correctGuesses = 0;
+        //     if (letterGuessed !== alreadyGuessed.includes(letterGuessed)) {
+        //         alreadyGuessed.push(letterGuessed);
+        //         console.log(alreadyGuessed[0]);
+        //         // return letterGuessed;
+        //     }
+        //     else {
+        //         console.log("Nope you're a loser");
+        //     }
+        //     // return alreadyGuessed;
         // }
+        //     if (letterGuessed !== alreadyGuessed[index1]){
+        //         for(let index2 = 0; correctGuesses < bandName.length; index2++){
+        //             // if (){}
+        //         }
+        //     }
+        // alreadyGuessed.forEach(function (element) {
+        //     console.log(element);
+        // });
+        // console.log(letterGuessed);
+        // console.log(alreadyGuessed[]);
+        // console.log(allBandNames[2]);
+        // console.log(bandName);
+        // console.log(correctGuesses);
     </script>
 </body>
 
