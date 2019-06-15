@@ -52,7 +52,7 @@
             <div class="col-md-4 column">
                 <div class="row" id="bandName-onScreen">Guess the Band Name</div>
                 <div class="row" id="triesLeft-onScreen">Amount of Tries: 10</div>
-                <div class="row">Letters Guessed: <span id=lettersGuessed-onScreen></span></div>
+                <div class="row">Letters Guessed:&nbsp;<span id=lettersGuessed-onScreen></span></div>
             </div>
         </div>
     </div>
@@ -74,8 +74,8 @@
         var unfinishedBandName = [];
         var correctGuessesArray = [];
 
-        for (let i = 0; i < bandName.length ; i++){
-            unfinishedBandName.push("_");
+        for (let i = 0; i < bandName.length; i++) {
+            unfinishedBandName.push("_ ");
         }
 
         document.onkeyup = function (event) {
@@ -101,16 +101,18 @@
                         for (let i = 0; i < bandName.length; i++) {
                             // console.log("We atleast made it here");
                             if (letterGuessed === bandName[i]) {
-                                correctGuessesArray.push(letterGuessed)
-                                unfinishedBandName[i] = letterGuessed
+                                correctGuessesArray.push(letterGuessed);
+                                unfinishedBandName[i] = letterGuessed;
                                 correctGuesses++;
                             }
 
                             else {
                                 // unfinishedBandName.push("_");
                             }
+
+                            //display unfinished band name
                             var bandNameOnScreen = document.getElementById("bandName-onScreen");
-                            bandNameOnScreen.textContent = unfinishedBandName;
+                            bandNameOnScreen.textContent = unfinishedBandName.join(" ").toUpperCase();
 
                         }
                     }
@@ -119,10 +121,15 @@
                     else {
                         alreadyGuessed.push(letterGuessed);
                         triesLeft--;
+
+                        //display tries left
                         var triesLeftOnScreen = document.getElementById("triesLeft-onScreen");
                         triesLeftOnScreen.textContent = ("Amount of Tries: " + triesLeft);
                     }
-                    console.log(i);
+
+                    //display already guessed
+                    var alreadyGuessedOnScreen = document.getElementById("lettersGuessed-onScreen");
+                    alreadyGuessedOnScreen.textContent = alreadyGuessed.join(", ");
                 }
                 else {
                 }
@@ -137,9 +144,9 @@
 
             //Displays items stored in alreadyGuessed
             //.join() works on arrays. LOOK IT UP!!
-            unfinishedBandName.forEach(function (element) {
-                console.log(element);
-            });
+            // unfinishedBandName.forEach(function (element) {
+            //     console.log(element);
+            // });
 
 
             // Trying to display "_" in the spaces of letters not guessed in bandName
