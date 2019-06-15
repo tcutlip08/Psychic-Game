@@ -50,9 +50,9 @@
                 Picture of band previously guessed
             </div>
             <div class="col-md-4 column">
-                <div class="row" id="bandName-onScreen"></div>
-                <div class="row" id="triesLeft-onScreen">Amount of Tries: #</div>
-                <div class="row" id=lettersGuessed-onScreen></div>
+                <div class="row" id="bandName-onScreen">Guess the Band Name</div>
+                <div class="row" id="triesLeft-onScreen">Amount of Tries: 10</div>
+                <div class="row">Letters Guessed: <span id=lettersGuessed-onScreen></span></div>
             </div>
         </div>
     </div>
@@ -71,10 +71,15 @@
         var alreadyGuessed = [];
         var correctGuesses = 0;
         var triesLeft = 10;
-        // alreadyGuessed.push(event);
+        var unfinishedBandName = [];
+        var correctGuessesArray = [];
+
+        for (let i = 0; i < bandName.length ; i++){
+            unfinishedBandName.push("_");
+        }
 
         document.onkeyup = function (event) {
-            let letterGuessed = event.key;
+            let letterGuessed = event.key.toLocaleLowerCase();
 
             for (let i = 0; i < alphabet.length; i++) {
 
@@ -82,24 +87,42 @@
                 if (letterGuessed === alphabet[i]) {
 
                     //checking if the user has already guessed the value before testing others to not have duplicate data
-                    if (alreadyGuessed.includes(letterGuessed) === true){
+                    if (alreadyGuessed.includes(letterGuessed)) {
                         alert("You already guessed that, try again");
-                    } 
-                    
+                    }
+
                     //if letter guessed is in the band name add value to already guessed
-                    else if (bandName.includes(letterGuessed) === true) {
+                    else if (bandName.includes(letterGuessed)) {
+
                         alreadyGuessed.push(letterGuessed);
+                        correctGuessesArray.push(letterGuessed);
 
                         //figure out how to incremate for each letter in the band name // example: metallica has two l's if letter l is guessed it needs to increment twice
-                        correctGuesses++;
-                        console.log("HolyShit!")
-                    } 
-                    
+                        for (let i = 0; i < bandName.length; i++) {
+                            // console.log("We atleast made it here");
+                            if (letterGuessed === bandName[i]) {
+                                correctGuessesArray.push(letterGuessed)
+                                unfinishedBandName[i] = letterGuessed
+                                correctGuesses++;
+                            }
+
+                            else {
+                                // unfinishedBandName.push("_");
+                            }
+                            var bandNameOnScreen = document.getElementById("bandName-onScreen");
+                            bandNameOnScreen.textContent = unfinishedBandName;
+
+                        }
+                    }
+
                     //if both conditions up top fail that means it IS a letter but was not in the band name so decrement triesLeft and still push alreadyGuessed
                     else {
                         alreadyGuessed.push(letterGuessed);
                         triesLeft--;
+                        var triesLeftOnScreen = document.getElementById("triesLeft-onScreen");
+                        triesLeftOnScreen.textContent = ("Amount of Tries: " + triesLeft);
                     }
+                    console.log(i);
                 }
                 else {
                 }
@@ -107,22 +130,23 @@
 
             //TEST VALUES HERE//
 
-            console.log("Tries Left: " + triesLeft);
+            // console.log("Tries Left: " + triesLeft);
             console.log("Correct Guesses: " + correctGuesses);
 
             //TEST VALUES HERE//
 
             //Displays items stored in alreadyGuessed
-            // alreadyGuessed.forEach(function (element) {
-            //     console.log(element);
-            // });
+            //.join() works on arrays. LOOK IT UP!!
+            unfinishedBandName.forEach(function (element) {
+                console.log(element);
+            });
 
 
             // Trying to display "_" in the spaces of letters not guessed in bandName
             console.log(bandName);
-            for (let i; i < alphabet.length; i++) {
-                console.log("_");
-            }
+            // for (let i = 0; i < bandName.length; i++) {
+            //     console.log("_");
+            // }
         }
     </script>
 </body>
