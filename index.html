@@ -50,9 +50,9 @@
                 Picture of band previously guessed
             </div>
             <div class="col-md-4 column">
-                <div class="row">Display _ _ _ word</div>
-                <div class="row">Amount of Tries: #</div>
-                <div class="row">Letters already guessed</div>
+                <div class="row" id="bandName-onScreen"></div>
+                <div class="row" id="triesLeft-onScreen">Amount of Tries: #</div>
+                <div class="row" id=lettersGuessed-onScreen></div>
             </div>
         </div>
     </div>
@@ -67,53 +67,63 @@
         //--------------------------------------------------------------------------------------------------------
         const allBandNames = ["metallica", "nonpoint", "sevendust"];
         var bandName = allBandNames[Math.floor(Math.random() * allBandNames.length)];
+        const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
         var alreadyGuessed = [];
         var correctGuesses = 0;
+        var triesLeft = 10;
         // alreadyGuessed.push(event);
 
         document.onkeyup = function (event) {
             let letterGuessed = event.key;
-            var correctGuesses = 0;
 
-            if (letterGuessed !== alreadyGuessed.includes(letterGuessed)) {
-                alreadyGuessed.push(letterGuessed);
-                alreadyGuessed.forEach(function (element) {
-                    console.log(element);
-                });
+            for (let i = 0; i < alphabet.length; i++) {
+
+                //making sure the entered key is a letter
+                if (letterGuessed === alphabet[i]) {
+
+                    //checking if the user has already guessed the value before testing others to not have duplicate data
+                    if (alreadyGuessed.includes(letterGuessed) === true){
+                        alert("You already guessed that, try again");
+                    } 
+                    
+                    //if letter guessed is in the band name add value to already guessed
+                    else if (bandName.includes(letterGuessed) === true) {
+                        alreadyGuessed.push(letterGuessed);
+
+                        //figure out how to incremate for each letter in the band name // example: metallica has two l's if letter l is guessed it needs to increment twice
+                        correctGuesses++;
+                        console.log("HolyShit!")
+                    } 
+                    
+                    //if both conditions up top fail that means it IS a letter but was not in the band name so decrement triesLeft and still push alreadyGuessed
+                    else {
+                        alreadyGuessed.push(letterGuessed);
+                        triesLeft--;
+                    }
+                }
+                else {
+                }
             }
-            else {
-                console.log(letterGuessed + " has already been guessed");
+
+            //TEST VALUES HERE//
+
+            console.log("Tries Left: " + triesLeft);
+            console.log("Correct Guesses: " + correctGuesses);
+
+            //TEST VALUES HERE//
+
+            //Displays items stored in alreadyGuessed
+            // alreadyGuessed.forEach(function (element) {
+            //     console.log(element);
+            // });
+
+
+            // Trying to display "_" in the spaces of letters not guessed in bandName
+            console.log(bandName);
+            for (let i; i < alphabet.length; i++) {
+                console.log("_");
             }
         }
-
-
-
-        // document.onkeyup = function (event) {
-        //     var letterGuessed = event.key;
-        //     // var correctGuesses = 0;
-        //     if (letterGuessed !== alreadyGuessed.includes(letterGuessed)) {
-        //         alreadyGuessed.push(letterGuessed);
-        //         console.log(alreadyGuessed[0]);
-        //         // return letterGuessed;
-        //     }
-        //     else {
-        //         console.log("Nope you're a loser");
-        //     }
-        //     // return alreadyGuessed;
-        // }
-        //     if (letterGuessed !== alreadyGuessed[index1]){
-        //         for(let index2 = 0; correctGuesses < bandName.length; index2++){
-        //             // if (){}
-        //         }
-        //     }
-        // alreadyGuessed.forEach(function (element) {
-        //     console.log(element);
-        // });
-        // console.log(letterGuessed);
-        // console.log(alreadyGuessed[]);
-        // console.log(allBandNames[2]);
-        // console.log(bandName);
-        // console.log(correctGuesses);
     </script>
 </body>
 
