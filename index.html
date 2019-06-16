@@ -16,7 +16,7 @@
         .body {
             background-color: darkgray;
             width: 100%;
-            height: 100%;
+            height: 100%
         }
 
         .container {
@@ -27,7 +27,13 @@
 
         .row {
             background-color: lightblue;
-            margin: .5%;
+            margin: 1%;
+        }
+
+        .rightPanel{
+            text-align: center;
+            width: 100%;
+            margin: 5%;
         }
 
         .column {
@@ -46,13 +52,36 @@
         <div class="row">
         </div>
         <div class="row">
-            <div class="col-md-8 column" id="">
-                Picture of band previously guessed
+            <div class="col-md-8 column" id="video">
+                <h1 style="text-align: center; padding: 10px; display: none;">Guess Away</h1>
+                <!-- METALLICA -->
+                <iframe style="height: 90%; display: none; padding-top: 10px;" id="metallica"
+                    src="https://www.youtube.com/embed/YinYm4mbpvQ" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                <!-- NONPOINT -->
+
+                <!-- SEVENDUST -->
+
+                <!-- KORN -->
+
+                <!-- MEGADETH -->
+
+                <!-- PANTERA -->
+
+                <!-- DISTURBED -->
+
+                <!-- GODSMACK -->
+
+                <!-- ACDC -->
+
+                <!-- SLIPKNOT -->
+
             </div>
             <div class="col-md-4 column">
-                <div class="row" id="bandName-onScreen">Guess the Band Name</div>
-                <div class="row" id="triesLeft-onScreen">Amount of Tries: 10</div>
-                <div class="row">Letters Guessed:&nbsp;<span id=lettersGuessed-onScreen></span></div>
+                <div class="row rightPanel" id="bandName-onScreen">Guess the Band Name</div>
+                <div class="row rightPanel" id="triesLeft-onScreen">Amount of Tries: 10</div>
+                <div class="row rightPanel" style="overflow-wrap: normal;">Letters Guessed:&nbsp;<span id=lettersGuessed-onScreen></span></div>
             </div>
         </div>
     </div>
@@ -65,6 +94,7 @@
         //push userGuess into alreadyGuessed by the end up the loop
         //when correctGuesses = bandName display "you win" band picture and song
         //--------------------------------------------------------------------------------------------------------
+        //, "nonpoint", "sevendust", "korn", "megadeth", "pantera", "disturbed", "godsmack", "acdc", "slipknot"
         const allBandNames = ["metallica", "nonpoint", "sevendust", "korn", "megadeth", "pantera", "disturbed", "godsmack", "acdc", "slipknot"];
         var bandName = allBandNames[Math.floor(Math.random() * allBandNames.length)];
         const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -84,6 +114,7 @@
             let letterGuessed = event.key.toLocaleLowerCase();
 
             for (let i = 0; i < alphabet.length; i++) {
+                console.log(bandName);
 
                 //making sure the entered key is a letter
                 if (letterGuessed === alphabet[i]) {
@@ -111,6 +142,12 @@
                                     correctGuesses++;
                                     if (correctGuesses === bandName.length) {
                                         alert("Congratulations");
+                                        var videoOnScreen = document.getElementById(bandName).style.display = "block";
+                                        videoOnScreen = document.getElementById(bandName).style.textAlign = "center";
+                                        videoOnScreen.autoplay = true;
+                                        // videoOnScreen.load();
+                                        // videoOnScreen.style.display = block;
+
                                         //clear all values
                                         bandName = allBandNames[Math.floor(Math.random() * allBandNames.length)];
                                         alreadyGuessed = [];
@@ -181,20 +218,35 @@
             // console.log("Correct Guesses: " + correctGuesses);
 
             //TEST VALUES HERE//
-
-            //Displays items stored in alreadyGuessed
-            //.join() works on arrays. LOOK IT UP!!
-            // unfinishedBandName.forEach(function (element) {
-            //     console.log(element);
-            // });
-
-
-            // Trying to display "_" in the spaces of letters not guessed in bandName
-            // console.log(bandName);
-            // for (let i = 0; i < bandName.length; i++) {
-            //     console.log("_");
-            // }
         }
+        //DISPLAY VIDEO ON CORRECT FULL WORD
+        // function playVideo(bandName) {
+        //     // for (let i = 0; i < allBandNames.length; i++) {
+        //     "metallica", "nonpoint", "sevendust", "korn", "megadeth", "pantera", "disturbed", "godsmack", "acdc", "slipknot"
+        //     switch (bandName) {
+        //         case "metallica":
+        //             break;
+        //         case "nonpoint":
+        //             break;
+        //         case "sevendust":
+        //             break;
+        //         case "korn":
+        //             break;
+        //         case "megadeth":
+        //             break;
+        //         case "pantera":
+        //             break;
+        //         case "disturbed":
+        //             break;
+        //         case "godsmack":
+        //             break;
+        //         case "acdc":
+        //             break;
+        //         case "slipknot":
+        //             break;
+        //     }
+        // }
+        // }
     </script>
 </body>
 
