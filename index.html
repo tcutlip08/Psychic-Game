@@ -65,7 +65,7 @@
         //push userGuess into alreadyGuessed by the end up the loop
         //when correctGuesses = bandName display "you win" band picture and song
         //--------------------------------------------------------------------------------------------------------
-        const allBandNames = ["metallica", "nonpoint", "sevendust", "korn", "megadeth", "pantera", "disturbed", "godsmack"];
+        const allBandNames = ["metallica", "nonpoint", "sevendust", "korn", "megadeth", "pantera", "disturbed", "godsmack", "acdc", "slipknot"];
         var bandName = allBandNames[Math.floor(Math.random() * allBandNames.length)];
         const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
         var alreadyGuessed = [];
@@ -76,6 +76,8 @@
 
         for (let i = 0; i < bandName.length; i++) {
             unfinishedBandName.push("_ ");
+            var bandNameOnScreen = document.getElementById("bandName-onScreen");
+            bandNameOnScreen.textContent = unfinishedBandName.join(" ").toUpperCase();
         }
 
         document.onkeyup = function (event) {
@@ -88,12 +90,14 @@
 
                     //checking if the user has already guessed the value before testing others to not have duplicate data
                     if (triesLeft > 0) {
+
+                        //no duplicate data
                         if (alreadyGuessed.includes(letterGuessed)) {
                             alert("You already guessed that, try again");
                         }
 
                         //if letter guessed is in the band name add value to already guessed
-                        else if (bandName.includes(letterGuessed)) {
+                        else if (bandName.includes(letterGuessed) && (correctGuesses !== bandName.length)) {
 
                             alreadyGuessed.push(letterGuessed);
                             correctGuessesArray.push(letterGuessed);
@@ -127,7 +131,6 @@
                                 }
 
                                 else {
-                                    // unfinishedBandName.push("_");
                                 }
                                 //display unfinished band name
                                 var bandNameOnScreen = document.getElementById("bandName-onScreen");
@@ -147,6 +150,21 @@
                     }
                     else {
                         alert("Game Over!!\nRefresh the page to try again");
+
+                        bandName = allBandNames[Math.floor(Math.random() * allBandNames.length)];
+                        alreadyGuessed = [];
+                        correctGuesses = 0;
+                        triesLeft = 10;
+                        unfinishedBandName = [];
+                        correctGuessesArray = [];
+
+                        for (let i = 0; i < bandName.length; i++) {
+                            unfinishedBandName.push("_ ");
+                        }
+                        var bandNameOnScreen = document.getElementById("bandName-onScreen");
+                        bandNameOnScreen.textContent = unfinishedBandName.join(" ").toUpperCase();
+                        var triesLeftOnScreen = document.getElementById("triesLeft-onScreen");
+                        triesLeftOnScreen.textContent = ("Amount of Tries: " + triesLeft);
                     }
 
                     //display already guessed
@@ -160,7 +178,7 @@
             //TEST VALUES HERE//
 
             // console.log("Tries Left: " + triesLeft);
-            console.log("Correct Guesses: " + correctGuesses);
+            // console.log("Correct Guesses: " + correctGuesses);
 
             //TEST VALUES HERE//
 
@@ -172,7 +190,7 @@
 
 
             // Trying to display "_" in the spaces of letters not guessed in bandName
-            console.log(bandName);
+            // console.log(bandName);
             // for (let i = 0; i < bandName.length; i++) {
             //     console.log("_");
             // }
