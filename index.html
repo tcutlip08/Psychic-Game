@@ -65,7 +65,7 @@
         //push userGuess into alreadyGuessed by the end up the loop
         //when correctGuesses = bandName display "you win" band picture and song
         //--------------------------------------------------------------------------------------------------------
-        const allBandNames = ["metallica", "nonpoint", "sevendust"];
+        const allBandNames = ["metallica", "nonpoint", "sevendust", "korn", "megadeth", "pantera", "disturbed", "godsmack"];
         var bandName = allBandNames[Math.floor(Math.random() * allBandNames.length)];
         const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
         var alreadyGuessed = [];
@@ -87,44 +87,66 @@
                 if (letterGuessed === alphabet[i]) {
 
                     //checking if the user has already guessed the value before testing others to not have duplicate data
-                    if (alreadyGuessed.includes(letterGuessed)) {
-                        alert("You already guessed that, try again");
-                    }
+                    if (triesLeft > 0) {
+                        if (alreadyGuessed.includes(letterGuessed)) {
+                            alert("You already guessed that, try again");
+                        }
 
-                    //if letter guessed is in the band name add value to already guessed
-                    else if (bandName.includes(letterGuessed)) {
+                        //if letter guessed is in the band name add value to already guessed
+                        else if (bandName.includes(letterGuessed)) {
 
-                        alreadyGuessed.push(letterGuessed);
-                        correctGuessesArray.push(letterGuessed);
+                            alreadyGuessed.push(letterGuessed);
+                            correctGuessesArray.push(letterGuessed);
 
-                        //figure out how to incremate for each letter in the band name // example: metallica has two l's if letter l is guessed it needs to increment twice
-                        for (let i = 0; i < bandName.length; i++) {
-                            // console.log("We atleast made it here");
-                            if (letterGuessed === bandName[i]) {
-                                correctGuessesArray.push(letterGuessed);
-                                unfinishedBandName[i] = letterGuessed;
-                                correctGuesses++;
+                            //figure out how to incremate for each letter in the band name // example: metallica has two l's if letter l is guessed it needs to increment twice
+                            for (let i = 0; i < bandName.length; i++) {
+                                // console.log("We atleast made it here");
+                                if (letterGuessed === bandName[i]) {
+                                    correctGuessesArray.push(letterGuessed);
+                                    unfinishedBandName[i] = letterGuessed;
+                                    correctGuesses++;
+                                    if (correctGuesses === bandName.length) {
+                                        alert("Congratulations");
+                                        //clear all values
+                                        bandName = allBandNames[Math.floor(Math.random() * allBandNames.length)];
+                                        alreadyGuessed = [];
+                                        correctGuesses = 0;
+                                        triesLeft = 10;
+                                        unfinishedBandName = [];
+                                        correctGuessesArray = [];
+
+                                        for (let i = 0; i < bandName.length; i++) {
+                                            unfinishedBandName.push("_ ");
+                                        }
+                                        //display unfinished band name
+                                        var bandNameOnScreen = document.getElementById("bandName-onScreen");
+                                        bandNameOnScreen.textContent = unfinishedBandName.join(" ").toUpperCase();
+                                        var triesLeftOnScreen = document.getElementById("triesLeft-onScreen");
+                                        triesLeftOnScreen.textContent = ("Amount of Tries: " + triesLeft);
+                                    }
+                                }
+
+                                else {
+                                    // unfinishedBandName.push("_");
+                                }
+                                //display unfinished band name
+                                var bandNameOnScreen = document.getElementById("bandName-onScreen");
+                                bandNameOnScreen.textContent = unfinishedBandName.join(" ").toUpperCase();
                             }
+                        }
 
-                            else {
-                                // unfinishedBandName.push("_");
-                            }
+                        //if both conditions up top fail that means it IS a letter but was not in the band name so decrement triesLeft and still push alreadyGuessed
+                        else {
+                            alreadyGuessed.push(letterGuessed);
+                            triesLeft--;
 
-                            //display unfinished band name
-                            var bandNameOnScreen = document.getElementById("bandName-onScreen");
-                            bandNameOnScreen.textContent = unfinishedBandName.join(" ").toUpperCase();
-
+                            //display tries left
+                            var triesLeftOnScreen = document.getElementById("triesLeft-onScreen");
+                            triesLeftOnScreen.textContent = ("Amount of Tries: " + triesLeft);
                         }
                     }
-
-                    //if both conditions up top fail that means it IS a letter but was not in the band name so decrement triesLeft and still push alreadyGuessed
                     else {
-                        alreadyGuessed.push(letterGuessed);
-                        triesLeft--;
-
-                        //display tries left
-                        var triesLeftOnScreen = document.getElementById("triesLeft-onScreen");
-                        triesLeftOnScreen.textContent = ("Amount of Tries: " + triesLeft);
+                        alert("Game Over!!\nRefresh the page to try again");
                     }
 
                     //display already guessed
