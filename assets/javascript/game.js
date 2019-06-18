@@ -8,7 +8,7 @@
 
 //to be able to copy and paste bands i want list so i can set up a scenario i was having issues with
 //, "metallica", "nonpoint", "sevendust", "korn", "megadeth", "pantera", "disturbed", "godsmack", "acdc", "slipknot"
-var allBandNames = ["korn"];
+var allBandNames = ["metallica", "nonpoint", "sevendust", "korn", "megadeth", "pantera", "disturbed", "godsmack", "acdc", "slipknot"];
 var bandName = allBandNames[Math.floor(Math.random() * allBandNames.length)];
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var alreadyGuessed = [];
@@ -21,8 +21,8 @@ var triesLeftOnScreen;
 var bandNameOnScreen;
 // var bandIndex = {
 //     metallica: "The Day That Never Comes",
-//     nonpoint:"Angels Son",
-//     sevendust:"Alive and Kick"
+//     nonpoint: "Angels Son",
+//     sevendust: "Alive and Kick"
 // }
 
 for (let i = 0; i < bandName.length; i++) {

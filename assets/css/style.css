@@ -7,18 +7,12 @@
     overflow: auto;
 }
 
-#korn, #megadeth, #pantera, #disturbed, #godsmack, #acdc, #slipknot{
-    height: 100px;
-    width: 100px;
-}
-
-.container {
-    border-style: dotted;
-    border-color: black;    
+#container {
+    background-color: darkgray;
+    border-color: black;
 }
 
 .row {
-    background-color: lightblue;
     margin: 1%;
 }
 
@@ -28,19 +22,21 @@
     margin: 5%;
 }
 
-.column {
-    border-style: dotted;
-    border-color: green;
+.column div, h4{
+    /* border-style: dotted;
+    border-color: green; */
     font-family: 'metal mania', cursive;
-    font-size: 20px;
+    color: white;
+    font-size: 2rem;
 }
 
 #displayBandAndSong h4 {
-    text-align: center;
+    /* text-align: center; */
     width: 100%;
     margin: 5% auto;
+    float: left;
 }
 
 #mainContent {
-    height: 50%;
+    height: 100%;
 }
