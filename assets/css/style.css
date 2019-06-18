@@ -1,0 +1,46 @@
+.header img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    position: relative;
+    clear: both;
+    overflow: auto;
+}
+
+.body {
+    background-color: darkgray;
+    width: 100%;
+}
+
+.container {
+    border-style: dotted;
+    border-color: black;    
+}
+
+.row {
+    background-color: lightblue;
+    margin: 1%;
+}
+
+.rightPanel {
+    text-align: center;
+    width: 100%;
+    margin: 5%;
+}
+
+.column {
+    border-style: dotted;
+    border-color: green;
+    font-family: 'metal mania', cursive;
+    font-size: 20px;
+}
+
+#displayBandAndSong h4 {
+    text-align: center;
+    width: 100%;
+    margin: 5% auto;
+}
+
+#mainContent {
+    height: 50%;
+}
