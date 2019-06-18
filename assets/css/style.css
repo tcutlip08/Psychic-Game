@@ -7,9 +7,9 @@
     overflow: auto;
 }
 
-.body {
-    background-color: darkgray;
-    width: 100%;
+#korn, #megadeth, #pantera, #disturbed, #godsmack, #acdc, #slipknot{
+    height: 100px;
+    width: 100px;
 }
 
 .container {
