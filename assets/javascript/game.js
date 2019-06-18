@@ -8,7 +8,7 @@
 
 //to be able to copy and paste bands i want list so i can set up a scenario i was having issues with
 //, "metallica", "nonpoint", "sevendust", "korn", "megadeth", "pantera", "disturbed", "godsmack", "acdc", "slipknot"
-var allBandNames = ["metallica"];
+var allBandNames = ["metallica", "nonpoint", "sevendust"];
 var bandName = allBandNames[Math.floor(Math.random() * allBandNames.length)];
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var alreadyGuessed = [];
@@ -19,27 +19,20 @@ var correctGuessesArray = [];
 var alreadyGuessedOnScreen;
 var triesLeftOnScreen;
 var bandNameOnScreen;
-
-var bandIndex = {metallica: "The Day That Never Comes",
-    // "Metallica":"The Day That Never Comes",
-    // "Metallica":"The Day That Never Comes",
-    // "Metallica":"The Day That Never Comes",
-    // "Metallica":"The Day That Never Comes",
-    // "Metallica":"The Day That Never Comes",
-    // "Metallica":"The Day That Never Comes",
-    // "Metallica":"The Day That Never Comes",
-    // "Metallica":"The Day That Never Comes",
-    // "Metallica":"The Day That Never Comes",
-}
+// var bandIndex = {
+//     metallica: "The Day That Never Comes",
+//     nonpoint:"Angels Son",
+//     sevendust:"Alive and Kick"
+// }
 
 for (let i = 0; i < bandName.length; i++) {
     unfinishedBandName.push("_ ");
-    bandNameOnScreen = document.textContent.getElementById("bandName-onScreen");
-    bandNameOnScreen = unfinishedBandName.join(" ").toUpperCase();
+    bandNameOnScreen = document.getElementById("bandName-onScreen");
+    // bandNameOnScreen.textContent = unfinishedBandName.join(" ").toUpperCase();
 }
 
 document.onkeyup = function (event) {
-    let letterGuessed = event.key.toLocaleLowerCase();
+    let letterGuessed = event.key.toLowerCase();
 
     for (let i = 0; i < alphabet.length; i++) {
 
@@ -73,27 +66,19 @@ document.onkeyup = function (event) {
                                 //go through and set all videos to display: none
                                 for (let i = 0; i < allBandNames.length; i++) {
                                     var clearAllDisplays = document.getElementById(allBandNames[i]).style.display = "none";
-                                    // var vid = document.getElementById(allBandNames[i].pauseVid());
+                                    // var vid = document.getElementById(allBandNames[i]).pauseVid();
                                 }
                                 var videoOnScreen = document.getElementById(bandName).style.display = "block";
                                 videoOnScreen = document.getElementById(bandName).style.textAlign = "center";
                                 videoOnScreen.autoplay = true;
+                                videoOnScreen.load = document.getElementById(bandName);
 
                                 //WHAT THE FUCK IS GOIN ON HERE
-                                var leftPanel = document.getElementById("song");
-                                leftPanel = bandIndex.metallica;
+                                // var leftPanel = document.getElementById("getSong");
+                                // leftPanel = bandIndex.metallica;
 
                                 //clear all values
-                                bandName = allBandNames[Math.floor(Math.random() * allBandNames.length)];
-                                alreadyGuessed = [];
-                                correctGuesses = 0;
-                                triesLeft = 10;
-                                unfinishedBandName = [];
-                                correctGuessesArray = [];
-
-                                for (let i = 0; i < bandName.length; i++) {
-                                    unfinishedBandName.push("_ ");
-                                }
+                                resetValues();
                                 //display unfinished band name
                                 updateRightPanel();
                             }
@@ -119,16 +104,8 @@ document.onkeyup = function (event) {
             else {
                 alert("Game Over!!\nRefresh the page to try again");
 
-                bandName = allBandNames[Math.floor(Math.random() * allBandNames.length)];
-                alreadyGuessed = [];
-                correctGuesses = 0;
-                triesLeft = 10;
-                unfinishedBandName = [];
-                correctGuessesArray = [];
+                resetValues();
 
-                for (let i = 0; i < bandName.length; i++) {
-                    unfinishedBandName.push("_ ");
-                }
                 updateRightPanel();
             }
             updateRightPanel();
@@ -148,38 +125,23 @@ function updateRightPanel() {
     bandNameOnScreen.textContent = unfinishedBandName.join(" ").toUpperCase();
 }
 
-function playVid() {
-    vid.play();
+function resetValues() {
+    bandName = allBandNames[Math.floor(Math.random() * allBandNames.length)];
+    alreadyGuessed = [];
+    correctGuesses = 0;
+    triesLeft = 10;
+    unfinishedBandName = [];
+    correctGuessesArray = [];
+
+    for (let i = 0; i < bandName.length; i++) {
+        unfinishedBandName.push("_ ");
+    }
 }
 
-function pauseVid() {
-    vid.pause();
-}
-        //DISPLAY VIDEO ON CORRECT FULL WORD
-        // function playVideo(bandName) {
-        //     // for (let i = 0; i < allBandNames.length; i++) {
-        //     "metallica", "nonpoint", "sevendust", "korn", "megadeth", "pantera", "disturbed", "godsmack", "acdc", "slipknot"
-        //     switch (bandName) {
-        //         case "metallica":
-        //             break;
-        //         case "nonpoint":
-        //             break;
-        //         case "sevendust":
-        //             break;
-        //         case "korn":
-        //             break;
-        //         case "megadeth":
-        //             break;
-        //         case "pantera":
-        //             break;
-        //         case "disturbed":
-        //             break;
-        //         case "godsmack":
-        //             break;
-        //         case "acdc":
-        //             break;
-        //         case "slipknot":
-        //             break;
-        //     }
-        // }
-        // }
+// function playVid() {
+//     vid.play();
+// }
+
+// function pauseVid() {
+//     vid.pause();
+// }
