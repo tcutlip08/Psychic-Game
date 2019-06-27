@@ -44,7 +44,6 @@ document.onkeyup = function (event) {
 
                 //no duplicate data
                 if (alreadyGuessed.includes(letterGuessed)) {
-                    alert("You already guessed that, try again");
                 }
 
                 //if letter guessed is in the band name add value to already guessed
@@ -61,7 +60,6 @@ document.onkeyup = function (event) {
                             unfinishedBandName[i] = letterGuessed;
                             correctGuesses++;
                             if (correctGuesses === bandName.length) {
-                                alert("Congratulations\nThe Band Name was: " + bandName.toUpperCase());
 
                                 //go through and set all videos to display: none
                                 for (let i = 0; i < allBandNames.length; i++) {
@@ -73,14 +71,10 @@ document.onkeyup = function (event) {
                                 videoOnScreen.autoplay = true;
                                 videoOnScreen.load = document.getElementById(bandName);
 
-                                //WHAT THE FUCK IS GOIN ON HERE
-                                // var leftPanel = document.getElementById("getSong");
-                                // leftPanel = bandIndex.metallica;
-
+                                updateRightPanel();
                                 //clear all values
                                 resetValues();
                                 //display unfinished band name
-                                updateRightPanel();
                             }
                         }
 
